@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Rozprávková krajina — čoskoro.">
+  <meta name="description" content="Rozprávková krajina — básničky o zvieratkách. Kniha v predaji.">
   <title>Rozprávková krajina</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #1a1520;
-      --fg: #f4efe8;
-      --muted: rgba(244, 239, 232, 0.65);
-      --accent: #c9a962;
+      --bg: #f3ebe0;
+      --bg-deep: #e8dcc8;
+      --fg: #2a231c;
+      --muted: rgba(42, 35, 28, 0.78);
+      --accent: #a67c2d;
+      --badge: #8b4513;
     }
 
     * {
@@ -31,62 +33,103 @@
       color: var(--fg);
       background: var(--bg);
       background-image:
-        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(201, 169, 98, 0.18), transparent 55%),
-        radial-gradient(ellipse 80% 50% at 100% 100%, rgba(90, 60, 100, 0.25), transparent 50%),
-        radial-gradient(ellipse 60% 40% at 0% 80%, rgba(50, 70, 120, 0.2), transparent 45%);
+        radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 252, 246, 0.95), transparent 55%),
+        linear-gradient(165deg, var(--bg) 0%, var(--bg-deep) 100%);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .decor {
+      position: fixed;
+      bottom: -8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(120vw, 900px);
+      height: auto;
+      opacity: 0.07;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      padding: 2rem 1.5rem;
+      padding: 2.25rem 1.5rem 3rem;
+      max-width: 36rem;
+      margin: 0 auto;
       text-align: center;
     }
 
-    main {
-      max-width: 32rem;
+    .logo {
+      display: block;
+      width: min(280px, 85vw);
+      height: auto;
+      margin-bottom: 1.5rem;
     }
 
-    h1 {
-      font-family: "Cormorant Garamond", Georgia, serif;
+    .badge {
+      font-size: 0.82rem;
       font-weight: 600;
-      font-size: clamp(2rem, 6vw, 2.75rem);
-      letter-spacing: 0.02em;
-      line-height: 1.2;
-      margin-bottom: 1rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--badge);
+      margin-bottom: 1.75rem;
     }
 
-    .accent {
-      color: var(--accent);
+    .book {
+      width: min(320px, 88vw);
+      height: auto;
+      border-radius: 4px;
+      box-shadow:
+        0 12px 28px rgba(42, 35, 28, 0.12),
+        0 4px 8px rgba(42, 35, 28, 0.06);
+      margin-bottom: 1.75rem;
     }
 
-    p {
-      font-size: 1.05rem;
-      line-height: 1.65;
+    .lead {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.2rem, 3.8vw, 1.45rem);
+      font-weight: 500;
+      line-height: 1.55;
       color: var(--muted);
-      font-weight: 400;
-    }
-
-    .divider {
-      width: 3rem;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      margin: 1.75rem auto;
-      opacity: 0.7;
+      max-width: 28em;
+      margin: 0 auto;
     }
 
     footer {
-      margin-top: 3rem;
-      font-size: 0.85rem;
-      color: rgba(244, 239, 232, 0.4);
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      color: rgba(42, 35, 28, 0.38);
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Rozprávková <span class="accent">krajina</span></h1>
-    <div class="divider" aria-hidden="true"></div>
-    <p>Stránka sa pripravuje. Texty a obrázky doplníme čoskoro.</p>
-  </main>
-  <footer>www.rozpravkovakrajina.sk</footer>
+  <img class="decor" src="animations/Castle.svg" alt="" width="673" height="674" decoding="async">
+  <div class="wrap">
+    <img
+      class="logo"
+      src="images/logo.png"
+      alt="Rozprávková krajina"
+      width="280"
+      loading="eager"
+      decoding="async"
+    >
+    <p class="badge">V predaji</p>
+    <img
+      class="book"
+      src="images/main-book.png"
+      alt="Obálka knihy"
+      width="320"
+      loading="eager"
+      decoding="async"
+    >
+    <p class="lead">
+      Básničky o zvieratkách bežných, všedných, aj zvláštnych. Nájdeš, ktoré to sú?
+    </p>
+    <footer>www.rozpravkovakrajina.sk</footer>
+  </div>
 </body>
 </html>
