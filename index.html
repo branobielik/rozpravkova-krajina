@@ -3,133 +3,93 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Rozprávková krajina — básničky o zvieratkách. Kniha v predaji.">
+  <meta name="description" content="Rozprávková krajina — knihy pre deti. Farma 1, Akin's Adventures.">
   <title>Rozprávková krajina</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #f3ebe0;
-      --bg-deep: #e8dcc8;
-      --fg: #2a231c;
-      --muted: rgba(42, 35, 28, 0.78);
-      --accent: #a67c2d;
-      --badge: #8b4513;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      min-height: 100%;
-    }
-
-    body {
-      font-family: "Source Sans 3", system-ui, sans-serif;
-      color: var(--fg);
-      background: var(--bg);
-      background-image:
-        radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 252, 246, 0.95), transparent 55%),
-        linear-gradient(165deg, var(--bg) 0%, var(--bg-deep) 100%);
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    .decor {
-      position: fixed;
-      bottom: -8%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(120vw, 900px);
-      height: auto;
-      opacity: 0.07;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .wrap {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 2.25rem 1.5rem 3rem;
-      max-width: 36rem;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .logo {
-      display: block;
-      width: min(280px, 85vw);
-      height: auto;
-      margin-bottom: 1.5rem;
-    }
-
-    .badge {
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--badge);
-      margin-bottom: 1.75rem;
-    }
-
-    .book {
-      width: min(320px, 88vw);
-      height: auto;
-      border-radius: 4px;
-      box-shadow:
-        0 12px 28px rgba(42, 35, 28, 0.12),
-        0 4px 8px rgba(42, 35, 28, 0.06);
-      margin-bottom: 1.75rem;
-    }
-
-    .lead {
-      font-family: "Cormorant Garamond", Georgia, serif;
-      font-size: clamp(1.2rem, 3.8vw, 1.45rem);
-      font-weight: 500;
-      line-height: 1.55;
-      color: var(--muted);
-      max-width: 28em;
-      margin: 0 auto;
-    }
-
-    footer {
-      margin-top: 2.5rem;
-      font-size: 0.8rem;
-      color: rgba(42, 35, 28, 0.38);
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <img class="decor" src="animations/Castle.svg" alt="" width="673" height="674" decoding="async">
-  <div class="wrap">
-    <img
-      class="logo"
-      src="images/logo.jpg"
-      alt="Rozprávková krajina"
-      width="280"
-      loading="eager"
-      decoding="async"
-    >
-    <p class="badge">V predaji</p>
-    <img
-      class="book"
-      src="images/main-book.jpg"
-      alt="Obálka knihy"
-      width="320"
-      loading="eager"
-      decoding="async"
-    >
-    <p class="lead">
-      Básničky o zvieratkách bežných, všedných, aj zvláštnych. Nájdeš, ktoré to sú?
-    </p>
-    <footer>www.rozpravkovakrajina.sk</footer>
+  <div class="page">
+    <header class="site-header">
+      <a class="logo-link" href="index.html">
+        <img
+          class="logo"
+          src="images/logo.jpg"
+          alt="Rozprávková krajina"
+          width="200"
+          loading="eager"
+          decoding="async"
+        >
+      </a>
+      <nav class="nav" aria-label="Hlavné menu">
+        <a href="index.html" aria-current="page">Domov</a>
+        <a href="#knizky">Knižky</a>
+        <a href="ine.html">Iné</a>
+      </nav>
+    </header>
+
+    <div class="lottie-hero" id="lottie-hero" aria-hidden="true">
+      <div class="lottie-inner" id="lottie-root"></div>
+    </div>
+
+    <main id="knizky">
+      <div class="content">
+        <section class="book-block" aria-labelledby="farma1-title">
+          <p class="badge">V predaji</p>
+          <h2 class="book-title" id="farma1-title">Farma 1</h2>
+          <img
+            class="book-cover"
+            src="images/main-book.jpg"
+            alt="Obálka knihy Farma 1"
+            width="320"
+            loading="lazy"
+            decoding="async"
+          >
+          <p class="lead">
+            Básničky o zvieratkách bežných, všedných, aj zvláštnych. Nájdeš, ktoré to sú?
+          </p>
+        </section>
+
+        <section class="book-block" aria-labelledby="akin-title">
+          <h2 class="book-heading" id="akin-title">Akin's Adventures</h2>
+          <p class="book-desc">
+            Naučte deti po anglicky. Ešte nikdy to nebolo tak potrebné!
+          </p>
+          <img
+            class="book-cover"
+            src="images/akin-adventures.jpg"
+            alt="Obálka knihy Akin's Adventures"
+            width="320"
+            loading="lazy"
+            decoding="async"
+          >
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">www.rozpravkovakrajina.sk</footer>
   </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    (function () {
+      var el = document.getElementById("lottie-root");
+      if (!el || typeof lottie === "undefined") return;
+      try {
+        lottie.loadAnimation({
+          container: el,
+          renderer: "svg",
+          loop: true,
+          autoplay: true,
+          path: "animations/lottie/animations/animation_1.json"
+        });
+      } catch (e) {
+        el.closest(".lottie-hero").style.display = "none";
+      }
+    })();
+  </script>
 </body>
 </html>

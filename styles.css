@@ -1,0 +1,234 @@
+:root {
+  --bg: #f3ebe0;
+  --bg-deep: #e8dcc8;
+  --fg: #2a231c;
+  --muted: rgba(42, 35, 28, 0.78);
+  --accent: #a67c2d;
+  --badge: #8b4513;
+  --nav: #3d3329;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: "Source Sans 3", system-ui, sans-serif;
+  color: var(--fg);
+  background: var(--bg);
+  background-image:
+    radial-gradient(ellipse 100% 60% at 50% 0%, rgba(255, 252, 246, 0.95), transparent 55%),
+    linear-gradient(165deg, var(--bg) 0%, var(--bg-deep) 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+.decor {
+  position: fixed;
+  bottom: -8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(120vw, 900px);
+  height: auto;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding: 1rem 1.25rem 1.25rem;
+  max-width: 56rem;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.logo-link {
+  display: block;
+  flex-shrink: 0;
+}
+
+.logo-link .logo {
+  display: block;
+  width: min(200px, 52vw);
+  height: auto;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.nav a {
+  color: var(--nav);
+  text-decoration: none;
+  padding: 0.35rem 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  color: var(--badge);
+  border-bottom-color: rgba(139, 69, 19, 0.35);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--badge);
+  border-bottom-color: var(--accent);
+}
+
+.lottie-hero {
+  width: 100%;
+  max-width: 42rem;
+  margin: 0 auto;
+  min-height: 12rem;
+  max-height: min(40vw, 20rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.lottie-hero .lottie-inner {
+  width: 100%;
+  max-height: min(40vw, 20rem);
+}
+
+main {
+  flex: 1 0 auto;
+  width: 100%;
+}
+
+.content {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 2.5rem;
+  text-align: center;
+}
+
+.book-block {
+  margin-bottom: 3rem;
+}
+
+.book-block:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.badge {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--badge);
+  margin-bottom: 0.65rem;
+}
+
+.book-title {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.65rem, 5vw, 2.1rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--fg);
+  margin-bottom: 1.25rem;
+}
+
+.book-cover {
+  width: min(320px, 88vw);
+  height: auto;
+  border-radius: 4px;
+  box-shadow:
+    0 12px 28px rgba(42, 35, 28, 0.12),
+    0 4px 8px rgba(42, 35, 28, 0.06);
+  margin-bottom: 1.25rem;
+}
+
+.lead {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.2rem, 3.8vw, 1.45rem);
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 28em;
+  margin: 0 auto 2rem;
+}
+
+.book-heading {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.5rem, 4.5vw, 1.85rem);
+  font-weight: 600;
+  margin-bottom: 0.65rem;
+  color: var(--fg);
+}
+
+.book-desc {
+  font-size: 1.02rem;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 28em;
+  margin: 0 auto 1.25rem;
+}
+
+.site-footer {
+  flex-shrink: 0;
+  text-align: center;
+  padding: 1.5rem 1rem 2rem;
+  font-size: 0.8rem;
+  color: rgba(42, 35, 28, 0.38);
+}
+
+.ine-page .ine-body {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 3rem;
+  text-align: left;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.ine-page .ine-body h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.85rem;
+  font-weight: 600;
+  color: var(--fg);
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 520px) {
+  .site-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
