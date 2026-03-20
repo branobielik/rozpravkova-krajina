@@ -4,7 +4,7 @@ Do tohto priečinka ulož:
 
 | Súbor | Účel |
 |--------|------|
-| `logo.png` | Logo (môže byť aj `logo.svg` — potom uprav `src` v `index.html`) |
-| `main-book.png` | Obálka knihy (ak máš len JPG, premenuj na `main-book.jpg` a v `index.html` zmeň cestu) |
+| `logo.jpg` | Logo (alebo `logo.png` / `logo.svg` — uprav `src` v `index.html`) |
+| `main-book.jpg` | Obálka knihy |
 
-Formáty: **PNG** alebo **WebP** pre web sú v poriadku; **SVG** je výborný pre logo.
+Formáty: **JPG**, **PNG** alebo **WebP**; pri veľkom súbore obálky zváž kompresiu pre rýchlejšie načítanie.
