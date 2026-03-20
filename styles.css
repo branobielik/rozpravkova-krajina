@@ -52,6 +52,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  isolation: isolate;
 }
 
 .site-header {
@@ -113,26 +114,28 @@ body {
 
 .lottie-hero {
   position: relative;
-  z-index: 2;
+  z-index: 10;
   width: 100%;
   max-width: 42rem;
-  margin: -1cm auto 0;
-  min-height: 12rem;
-  max-height: min(40vw, 20rem);
+  margin: -0.5cm auto 0;
+  min-height: 13rem;
+  max-height: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.5rem 1rem 0.75rem;
-  overflow: hidden;
+  padding: 0.65rem 1rem 1rem;
+  overflow: visible;
   isolation: isolate;
   border-radius: 14px;
   background: linear-gradient(
     165deg,
-    rgba(210, 230, 255, 0.55) 0%,
-    rgba(235, 245, 255, 0.35) 45%,
-    rgba(245, 248, 255, 0.2) 100%
+    rgba(180, 210, 255, 0.65) 0%,
+    rgba(210, 230, 255, 0.5) 40%,
+    rgba(230, 240, 255, 0.35) 100%
   );
-  box-shadow: 0 0 0 1px rgba(60, 120, 200, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(37, 99, 235, 0.2),
+    0 8px 24px rgba(30, 64, 175, 0.08);
   transition:
     opacity 0.65s ease,
     max-height 0.65s ease,
@@ -148,18 +151,32 @@ body {
   margin: 0;
   padding: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .lottie-hero .lottie-inner {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-height: min(40vw, 20rem);
-  filter: sepia(0.35) hue-rotate(185deg) saturate(1.85) brightness(1.08) contrast(1.08);
+  max-width: 100%;
+  max-height: min(70vh, 32rem);
+  filter: brightness(1.03);
+}
+
+.lottie-blue-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: 14px;
+  pointer-events: none;
+  background: #2563eb;
+  opacity: 0.4;
+  mix-blend-mode: color;
 }
 
 .lottie-hero .lottie-inner svg {
   display: block;
+  max-width: 100%;
 }
 
 main {
@@ -167,10 +184,19 @@ main {
   width: 100%;
 }
 
+main#knizky {
+  padding-top: 0;
+  transition: padding-top 0.65s ease;
+}
+
+#lottie-hero.is-hidden + main#knizky {
+  padding-top: 1.75cm;
+}
+
 .content {
   max-width: 36rem;
   margin: 0 auto;
-  padding: 0 1.5rem 2.5rem;
+  padding: 1cm 1.5rem 2.5rem;
   text-align: center;
 }
 
@@ -234,14 +260,6 @@ main {
   margin-right: auto;
 }
 
-.poem-label {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.15rem, 3.2vw, 1.35rem);
-  font-weight: 600;
-  color: var(--fg);
-  margin-bottom: 0.35rem;
-}
-
 .poem-hint {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1rem, 2.8vw, 1.15rem);
@@ -285,15 +303,6 @@ main {
   border: 0;
 }
 
-.ine-video-title {
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.35rem, 4vw, 1.65rem);
-  font-weight: 600;
-  text-align: center;
-  color: var(--fg);
-  margin-top: 0.25rem;
-}
-
 .book-heading {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.5rem, 4.5vw, 1.85rem);
@@ -334,6 +343,9 @@ main {
 
 .ine-page .ine-body--video h1 {
   text-align: center;
+  font-size: clamp(1.35rem, 4.2vw, 1.85rem);
+  line-height: 1.28;
+  margin-bottom: 1.25rem;
 }
 
 @media (max-width: 520px) {
