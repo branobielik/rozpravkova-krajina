@@ -19,7 +19,7 @@
           class="logo"
           src="images/logo.jpg"
           alt="Rozprávková krajina"
-          width="200"
+          width="120"
           loading="eager"
           decoding="async"
         >
@@ -55,9 +55,6 @@
 
         <section class="book-block" aria-labelledby="akin-title">
           <h2 class="book-heading" id="akin-title">Akin's Adventures</h2>
-          <p class="book-desc">
-            Naučte deti po anglicky. Ešte nikdy to nebolo tak potrebné!
-          </p>
           <img
             class="book-cover"
             src="images/2ndbook-Akins-Adventures.jpg"
@@ -66,6 +63,9 @@
             loading="lazy"
             decoding="async"
           >
+          <p class="lead">
+            Naučte deti po anglicky. Ešte nikdy to nebolo tak potrebné!
+          </p>
         </section>
       </div>
     </main>
@@ -77,17 +77,34 @@
   <script>
     (function () {
       var el = document.getElementById("lottie-root");
-      if (!el || typeof lottie === "undefined") return;
+      var hero = document.getElementById("lottie-hero");
+      if (!el || !hero || typeof lottie === "undefined") return;
+      var anim;
+      function hideHero() {
+        hero.classList.add("is-hidden");
+        hero.setAttribute("aria-hidden", "true");
+        if (anim) {
+          try {
+            anim.destroy();
+          } catch (e) {}
+        }
+      }
+      var fallback;
       try {
-        lottie.loadAnimation({
+        anim = lottie.loadAnimation({
           container: el,
           renderer: "svg",
-          loop: true,
+          loop: false,
           autoplay: true,
           path: "animations/lottie/animations/animation_1.json"
         });
+        fallback = window.setTimeout(hideHero, 14000);
+        anim.addEventListener("complete", function () {
+          window.clearTimeout(fallback);
+          window.setTimeout(hideHero, 400);
+        });
       } catch (e) {
-        el.closest(".lottie-hero").style.display = "none";
+        hideHero();
       }
     })();
   </script>

@@ -64,16 +64,19 @@ body {
   max-width: 56rem;
   margin: 0 auto;
   width: 100%;
+  min-height: 3.25rem;
 }
 
 .logo-link {
-  display: block;
+  display: flex;
+  align-items: center;
   flex-shrink: 0;
+  line-height: 0;
 }
 
 .logo-link .logo {
   display: block;
-  width: min(200px, 52vw);
+  width: min(120px, 38vw);
   height: auto;
 }
 
@@ -82,8 +85,9 @@ body {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.35rem 1.25rem;
-  font-size: 0.95rem;
+  font-size: 1.425rem;
   font-weight: 500;
+  line-height: 1.2;
 }
 
 .nav a {
@@ -114,12 +118,33 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1rem;
+  padding: 0.25rem 1rem 0.75rem;
+  overflow: hidden;
+  transition:
+    opacity 0.65s ease,
+    max-height 0.65s ease,
+    min-height 0.65s ease,
+    margin 0.65s ease,
+    padding 0.65s ease;
+}
+
+.lottie-hero.is-hidden {
+  opacity: 0;
+  max-height: 0;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
 }
 
 .lottie-hero .lottie-inner {
   width: 100%;
   max-height: min(40vw, 20rem);
+  filter: hue-rotate(198deg) saturate(1.45) brightness(0.92);
+}
+
+.lottie-hero .lottie-inner svg {
+  display: block;
 }
 
 main {
@@ -135,7 +160,7 @@ main {
 }
 
 .book-block {
-  margin-bottom: 3rem;
+  margin-bottom: 5.5rem;
 }
 
 .book-block:last-of-type {
@@ -167,7 +192,13 @@ main {
   box-shadow:
     0 12px 28px rgba(42, 35, 28, 0.12),
     0 4px 8px rgba(42, 35, 28, 0.06);
-  margin-bottom: 1.25rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.book-cover + .lead {
+  margin-top: 1.25rem;
 }
 
 .lead {
@@ -177,23 +208,16 @@ main {
   line-height: 1.55;
   color: var(--muted);
   max-width: 28em;
-  margin: 0 auto 2rem;
+  margin: 0 auto;
 }
+
 
 .book-heading {
   font-family: "Cormorant Garamond", Georgia, serif;
   font-size: clamp(1.5rem, 4.5vw, 1.85rem);
   font-weight: 600;
-  margin-bottom: 0.65rem;
+  margin-bottom: 1.25rem;
   color: var(--fg);
-}
-
-.book-desc {
-  font-size: 1.02rem;
-  line-height: 1.55;
-  color: var(--muted);
-  max-width: 28em;
-  margin: 0 auto 1.25rem;
 }
 
 .site-footer {
