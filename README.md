@@ -22,6 +22,24 @@ Statická landing page pre [GitHub Pages](https://pages.github.com/).
 
 4. Po propagácii DNS v Pages klikni **Check again**, potom zapni **Enforce HTTPS**.
 
+## Druhá doména (`www.akinsadventures.com`)
+
+Rovnaký GitHub Pages projekt môže obsluhovať **viac domén**. V repozitári zostáva **jeden** súbor `CNAME` (primárna doména, u teba `www.rozpravkovakrajina.sk`). Druhú doménu GitHub **nepridávaš druhým súborom v gite** — doplníš ju v rozhraní GitHubu a DNS u registrátora.
+
+### 1. DNS u registrátora `akinsadventures.com`
+
+- **`www.akinsadventures.com`:** záznam **CNAME** — host `www` → `branobielik.github.io` (rovnaký cieľ ako pri hlavnej stránke).
+- Ak chceš aj **apex** `akinsadventures.com` (bez `www`): štyri **A** záznamy na rovnaké IP ako vyššie pri `rozpravkovakrajina.sk`, alebo presmerovanie apex → `www`.
+
+### 2. GitHub (web, nedá sa len „commitom“ z lokálu)
+
+1. Repozitár **rozpravkova-krajina** → **Settings** → **Pages**.
+2. V časti **Custom domain** klikni **Add domain** (alebo podľa aktuálneho rozhrania pridaj ďalšiu doménu) a zadaj **`www.akinsadventures.com`**.
+3. Po overení DNS klikni **Save** / **Check again**.
+4. Po úspechu zapni **HTTPS** pre túto doménu (ak GitHub ponúkne; často sa certifikát vytvorí automaticky ako pri prvej doméne).
+
+Lokálne v projekte stačí mať aktuálny `CNAME` a tento návod; samotné „priradenie“ druhej domény k Pages je vždy cez **Settings na GitHube**.
+
 ## Lokálny vývoj
 
 Otvor `index.html` v prehliadači alebo spusti jednoduchý server v koreňovom priečinku projektu.
