@@ -17,7 +17,7 @@
       <p class="tagline">A unique children’s book — educational, funny, and full of heart.</p>
     </header>
 
-    <main>
+    <main class="main-stack">
       <div class="prose">
         <p>
           <strong>‘Akin's Adventures!’</strong> is a unique children's book written in an educational yet funny way. It's about a lion that decides to find a king of humans to talk to him <em>‘king to king’</em>. He’s determined to convince the king that the way humans treat animals <strong>MUST</strong> change! A hooded crow will help him assemble a team of animals from around the world. Together they venture out into civilization in order to seek the king of humans, who may not even exist…
@@ -47,14 +47,34 @@
       </section>
 
       <section class="subscribe" aria-labelledby="subscribe-heading">
-        <h2 id="subscribe-heading">Subscribe for updates</h2>
+        <h2 id="subscribe-heading">Subscribe via email</h2>
         <p class="subscribe-text">
-          Get news about the book — tap the button to send us an email (you can change the message before sending).
+          Leave your email — we’ll send you news about the book. Submissions go to our inbox.
         </p>
-        <a
-          class="subscribe-btn"
-          href="mailto:akinthebook@gmail.com?subject=Subscribe%20-%20Akin's%20Adventures"
-        >akinthebook@gmail.com</a>
+        <!-- FormSubmit: static hosting; first use may ask to confirm the inbox at FormSubmit -->
+        <form
+          class="subscribe-form"
+          action="https://formsubmit.co/akinthebook@gmail.com"
+          method="POST"
+        >
+          <input type="hidden" name="_subject" value="Subscribe - Akin's Adventures">
+          <input type="hidden" name="_template" value="table">
+          <input type="hidden" name="_captcha" value="false">
+          <div class="subscribe-fields">
+            <label class="sr-only" for="sub-email">Email address</label>
+            <input
+              id="sub-email"
+              class="subscribe-input"
+              type="email"
+              name="email"
+              required
+              autocomplete="email"
+              inputmode="email"
+              placeholder="your@email.com"
+            >
+            <button class="subscribe-submit" type="submit">Subscribe</button>
+          </div>
+        </form>
       </section>
 
       <p class="back-link">

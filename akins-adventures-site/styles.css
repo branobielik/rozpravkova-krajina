@@ -1,9 +1,11 @@
 :root {
-  --panel: rgba(255, 252, 246, 0.94);
+  --panel: rgba(255, 252, 246, 0.88);
+  --panel-strong: rgba(255, 252, 246, 0.93);
   --fg: #1a1510;
-  --muted: rgba(26, 21, 16, 0.82);
+  --muted: rgba(26, 21, 16, 0.84);
   --accent: #1e3a5f;
   --accent-hover: #152a45;
+  --ring: rgba(30, 58, 95, 0.35);
 }
 
 * {
@@ -25,7 +27,8 @@ body {
   font-family: "Source Sans 3", system-ui, sans-serif;
   color: var(--fg);
   position: relative;
-  line-height: 1.6;
+  line-height: 1.65;
+  font-size: clamp(1rem, 1.05vw, 1.08rem);
 }
 
 body::before {
@@ -36,17 +39,19 @@ body::before {
   background: url("images/background.jpg") center center / cover no-repeat;
 }
 
+/* Light veil so the illustration stays visible; text sits on semi-opaque panels */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   background: linear-gradient(
-    165deg,
-    rgba(255, 252, 246, 0.78) 0%,
-    rgba(235, 228, 215, 0.88) 45%,
-    rgba(220, 210, 195, 0.9) 100%
+    180deg,
+    rgba(255, 252, 246, 0.22) 0%,
+    rgba(235, 228, 215, 0.38) 55%,
+    rgba(220, 210, 195, 0.45) 100%
   );
+  pointer-events: none;
 }
 
 .page {
@@ -55,46 +60,63 @@ body::after {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  max-width: 40rem;
+  width: 100%;
+  max-width: min(92vw, 72rem);
   margin: 0 auto;
-  padding: 2rem 1.25rem 2.5rem;
+  padding: clamp(1.75rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem) clamp(2.5rem, 5vw, 4rem);
 }
 
 .site-header {
   text-align: center;
-  margin-bottom: 1.75rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .site-header h1 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2rem, 6vw, 2.85rem);
+  font-size: clamp(2.25rem, 5.5vw, 3.25rem);
   font-weight: 600;
-  margin-bottom: 0.5rem;
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+  margin-bottom: 0.65rem;
+  text-shadow:
+    0 0 24px rgba(255, 255, 255, 0.85),
+    0 2px 4px rgba(255, 255, 255, 0.6);
 }
 
 .tagline {
-  font-size: 1rem;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
   color: var(--muted);
   font-weight: 500;
+  line-height: 1.5;
 }
 
-main {
+.main-stack {
   flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  width: 100%;
 }
 
 .prose {
-  background: var(--panel);
-  border-radius: 12px;
-  padding: 1.5rem 1.35rem;
-  margin-bottom: 2rem;
+  width: 100%;
+  max-width: min(52rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--panel-strong);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.35rem, 3vw, 2.5rem);
   text-align: left;
-  box-shadow: 0 8px 32px rgba(26, 21, 16, 0.08);
+  box-shadow: 0 12px 40px rgba(26, 21, 16, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .prose p {
-  font-size: 1.05rem;
-  margin-bottom: 1.1rem;
+  font-size: clamp(1.05rem, 1.35vw, 1.15rem);
+  margin-bottom: 1.35rem;
   color: var(--muted);
 }
 
@@ -108,20 +130,24 @@ main {
 }
 
 .video-block {
-  margin-bottom: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .video-block h2,
 .subscribe h2 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.5rem;
+  font-size: clamp(1.6rem, 2.5vw, 2rem);
   font-weight: 600;
   text-align: center;
-  margin-bottom: 1rem;
 }
 
 .video-wrap {
-  width: min(10cm, 100%);
+  width: 100%;
+  max-width: min(56rem, 100%);
   margin: 0 auto;
 }
 
@@ -130,9 +156,10 @@ main {
   aspect-ratio: 16 / 9;
   width: 100%;
   background: #0a1628;
-  border-radius: 10px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 12px 36px rgba(26, 21, 16, 0.18);
+  box-shadow: 0 16px 48px rgba(26, 21, 16, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
 }
 
 .video-inner iframe {
@@ -144,49 +171,101 @@ main {
 }
 
 .subscribe {
+  width: 100%;
+  max-width: min(40rem, 100%);
+  margin-left: auto;
+  margin-right: auto;
   background: var(--panel);
-  border-radius: 12px;
-  padding: 1.5rem 1.35rem;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 14px;
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.35rem, 3vw, 2.25rem);
   text-align: center;
-  margin-bottom: 1.75rem;
-  box-shadow: 0 8px 32px rgba(26, 21, 16, 0.08);
+  box-shadow: 0 12px 40px rgba(26, 21, 16, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 .subscribe-text {
-  font-size: 0.98rem;
+  font-size: clamp(0.98rem, 1.2vw, 1.05rem);
   color: var(--muted);
-  margin-bottom: 1.1rem;
-  max-width: 28em;
+  margin-bottom: 1.35rem;
+  max-width: 36em;
   margin-left: auto;
   margin-right: auto;
+  line-height: 1.55;
 }
 
-.subscribe-btn {
-  display: inline-block;
+.subscribe-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.subscribe-input {
+  flex: 1 1 16rem;
+  min-width: min(100%, 14rem);
+  padding: 0.85rem 1rem;
+  font-size: 1.05rem;
+  font-family: inherit;
+  border: 2px solid rgba(30, 58, 95, 0.2);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--fg);
+}
+
+.subscribe-input::placeholder {
+  color: rgba(26, 21, 16, 0.45);
+}
+
+.subscribe-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.subscribe-submit {
+  flex: 0 1 auto;
+  padding: 0.85rem 1.75rem;
   font-size: 1.05rem;
   font-weight: 600;
+  font-family: inherit;
   color: #fff;
   background: var(--accent);
-  text-decoration: none;
-  padding: 0.65rem 1.35rem;
-  border-radius: 8px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
   transition: background 0.2s ease, transform 0.15s ease;
 }
 
-.subscribe-btn:hover {
+.subscribe-submit:hover {
   background: var(--accent-hover);
   transform: translateY(-1px);
 }
 
-.subscribe-btn:focus-visible {
-  outline: 3px solid rgba(30, 58, 95, 0.45);
+.subscribe-submit:focus-visible {
+  outline: 3px solid var(--ring);
   outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .back-link {
   text-align: center;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--muted);
+  margin-top: 0.5rem;
 }
 
 .back-link a {
@@ -195,15 +274,18 @@ main {
 }
 
 .site-footer {
-  margin-top: 2rem;
+  margin-top: clamp(2rem, 4vw, 3rem);
   text-align: center;
-  font-size: 0.8rem;
-  color: rgba(26, 21, 16, 0.45);
+  font-size: 0.85rem;
+  color: rgba(26, 21, 16, 0.5);
 }
 
-@media (max-width: 480px) {
-  .prose,
-  .subscribe {
-    padding: 1.25rem 1.1rem;
+@media (max-width: 520px) {
+  .subscribe-fields {
+    flex-direction: column;
+  }
+
+  .subscribe-submit {
+    width: 100%;
   }
 }

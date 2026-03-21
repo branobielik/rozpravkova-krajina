@@ -23,3 +23,7 @@ Tento priečinok je **samostatný** statický web pre doménu **www.akinsadventu
 6. Po overení DNS zapni **Enforce HTTPS**.
 
 Hlavná stránka projektu *Rozprávková krajina* má na obálke knihy odkaz na `https://www.akinsadventures.com`.
+
+## Formulár „Subscribe via email“
+
+Používa [FormSubmit](https://formsubmit.co/) (`formsubmit.co`) — odosiela na **akinthebook@gmail.com** bez vlastného servera. Pri **prvom** odoslaní môže FormSubmit poslať na túto adresu **potvrdzovací e-mail**; treba ho odkliknúť, aby formulár začal fungovať.
