@@ -1,11 +1,18 @@
 :root {
-  --panel: rgba(255, 252, 246, 0.88);
-  --panel-strong: rgba(255, 252, 246, 0.93);
+  /* Jemné „sklo“ — text čitateľný, ilustrácia viditeľná */
+  --panel: rgba(255, 252, 246, 0.38);
+  --panel-border: rgba(255, 255, 255, 0.35);
   --fg: #1a1510;
-  --muted: rgba(26, 21, 16, 0.84);
+  --muted: rgba(26, 21, 16, 0.92);
   --accent: #1e3a5f;
   --accent-hover: #152a45;
   --ring: rgba(30, 58, 95, 0.35);
+  /* +50 % oproti predchádzajúcej základnej veľkosti */
+  --fs-body: clamp(1.5rem, 1.65vw, 1.65rem);
+  --fs-lead: clamp(1.575rem, 2.2vw, 1.8rem);
+  --fs-h1: clamp(3.4rem, 6.5vw, 5rem);
+  --fs-h2: clamp(2.4rem, 3.2vw, 3rem);
+  --fs-prose: clamp(1.575rem, 1.85vw, 1.75rem);
 }
 
 * {
@@ -16,6 +23,7 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
 }
 
 html,
@@ -28,30 +36,19 @@ body {
   color: var(--fg);
   position: relative;
   line-height: 1.65;
-  font-size: clamp(1rem, 1.05vw, 1.08rem);
+  font-size: var(--fs-body);
+  width: 100%;
+  margin: 0;
+  overflow-x: hidden;
 }
 
+/* Pozadie na celú obrazovku — žiadny biely „závoj“ navrch (žiadne body::after) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  z-index: -2;
-  background: url("images/background.jpg") center center / cover no-repeat;
-}
-
-/* Light veil so the illustration stays visible; text sits on semi-opaque panels */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
   z-index: -1;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 252, 246, 0.22) 0%,
-    rgba(235, 228, 215, 0.38) 55%,
-    rgba(220, 210, 195, 0.45) 100%
-  );
-  pointer-events: none;
+  background: url("images/background.jpg") center center / cover no-repeat;
 }
 
 .page {
@@ -61,63 +58,71 @@ body::after {
   display: flex;
   flex-direction: column;
   width: 100%;
-  max-width: min(92vw, 72rem);
+  /* +25 % šírka oproti ~72rem → ~90rem */
+  max-width: min(97vw, 90rem);
   margin: 0 auto;
-  padding: clamp(1.75rem, 4vw, 3rem) clamp(1rem, 4vw, 2.5rem) clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(2rem, 4vw, 3.5rem) clamp(1.25rem, 3.5vw, 3rem) clamp(3rem, 5vw, 4.5rem);
 }
 
 .site-header {
   text-align: center;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-  max-width: 48rem;
+  margin-bottom: clamp(2.5rem, 4.5vw, 3.75rem);
+  max-width: min(60rem, 100%);
   margin-left: auto;
   margin-right: auto;
 }
 
 .site-header h1 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(2.25rem, 5.5vw, 3.25rem);
+  font-size: var(--fs-h1);
   font-weight: 600;
-  margin-bottom: 0.65rem;
+  margin-bottom: 0.75rem;
   text-shadow:
-    0 0 24px rgba(255, 255, 255, 0.85),
-    0 2px 4px rgba(255, 255, 255, 0.6);
+    0 0 28px rgba(255, 255, 255, 0.95),
+    0 0 48px rgba(255, 255, 255, 0.75),
+    0 2px 6px rgba(255, 255, 255, 0.9);
 }
 
 .tagline {
-  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  font-size: var(--fs-lead);
   color: var(--muted);
   font-weight: 500;
   line-height: 1.5;
+  text-shadow:
+    0 0 20px rgba(255, 255, 255, 0.9),
+    0 1px 3px rgba(255, 255, 255, 0.85);
 }
 
 .main-stack {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
-  gap: clamp(2.5rem, 5vw, 4rem);
+  gap: clamp(3rem, 5.5vw, 4.5rem);
   width: 100%;
 }
 
 .prose {
   width: 100%;
-  max-width: min(52rem, 100%);
+  max-width: min(65rem, 100%);
   margin-left: auto;
   margin-right: auto;
-  background: var(--panel-strong);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 14px;
-  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.35rem, 3vw, 2.5rem);
+  background: var(--panel);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1.5rem, 3.5vw, 3rem);
   text-align: left;
-  box-shadow: 0 12px 40px rgba(26, 21, 16, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 12px 40px rgba(26, 21, 16, 0.06);
+  border: 1px solid var(--panel-border);
 }
 
 .prose p {
-  font-size: clamp(1.05rem, 1.35vw, 1.15rem);
-  margin-bottom: 1.35rem;
+  font-size: var(--fs-prose);
+  margin-bottom: 1.5rem;
   color: var(--muted);
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.85),
+    0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
 .prose p:last-child {
@@ -134,20 +139,23 @@ body::after {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1rem, 2vw, 1.5rem);
+  gap: clamp(1.25rem, 2.5vw, 2rem);
 }
 
 .video-block h2,
 .subscribe h2 {
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.6rem, 2.5vw, 2rem);
+  font-size: var(--fs-h2);
   font-weight: 600;
   text-align: center;
+  text-shadow:
+    0 0 24px rgba(255, 255, 255, 0.95),
+    0 2px 4px rgba(255, 255, 255, 0.85);
 }
 
 .video-wrap {
   width: 100%;
-  max-width: min(56rem, 100%);
+  max-width: min(70rem, 100%);
   margin: 0 auto;
 }
 
@@ -156,10 +164,10 @@ body::after {
   aspect-ratio: 16 / 9;
   width: 100%;
   background: #0a1628;
-  border-radius: 12px;
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 16px 48px rgba(26, 21, 16, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 40px rgba(26, 21, 16, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .video-inner iframe {
@@ -172,46 +180,49 @@ body::after {
 
 .subscribe {
   width: 100%;
-  max-width: min(40rem, 100%);
+  max-width: min(50rem, 100%);
   margin-left: auto;
   margin-right: auto;
   background: var(--panel);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 14px;
-  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.35rem, 3vw, 2.25rem);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 16px;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem) clamp(1.5rem, 3.5vw, 3rem);
   text-align: center;
-  box-shadow: 0 12px 40px rgba(26, 21, 16, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 12px 40px rgba(26, 21, 16, 0.06);
+  border: 1px solid var(--panel-border);
 }
 
 .subscribe-text {
-  font-size: clamp(0.98rem, 1.2vw, 1.05rem);
+  font-size: clamp(1.35rem, 1.65vw, 1.5rem);
   color: var(--muted);
-  margin-bottom: 1.35rem;
+  margin-bottom: 1.5rem;
   max-width: 36em;
   margin-left: auto;
   margin-right: auto;
   line-height: 1.55;
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.85),
+    0 1px 2px rgba(255, 255, 255, 0.9);
 }
 
 .subscribe-fields {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.75rem;
+  gap: 1rem;
   justify-content: center;
   align-items: stretch;
 }
 
 .subscribe-input {
-  flex: 1 1 16rem;
-  min-width: min(100%, 14rem);
-  padding: 0.85rem 1rem;
-  font-size: 1.05rem;
+  flex: 1 1 18rem;
+  min-width: min(100%, 16rem);
+  padding: 1rem 1.15rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.35rem);
   font-family: inherit;
-  border: 2px solid rgba(30, 58, 95, 0.2);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(30, 58, 95, 0.25);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
   color: var(--fg);
 }
 
@@ -227,14 +238,14 @@ body::after {
 
 .subscribe-submit {
   flex: 0 1 auto;
-  padding: 0.85rem 1.75rem;
-  font-size: 1.05rem;
+  padding: 1rem 2rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.35rem);
   font-weight: 600;
   font-family: inherit;
   color: #fff;
   background: var(--accent);
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
   transition: background 0.2s ease, transform 0.15s ease;
 }
@@ -263,9 +274,10 @@ body::after {
 
 .back-link {
   text-align: center;
-  font-size: 1rem;
+  font-size: clamp(1.2rem, 1.5vw, 1.35rem);
   color: var(--muted);
   margin-top: 0.5rem;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 .back-link a {
@@ -274,10 +286,11 @@ body::after {
 }
 
 .site-footer {
-  margin-top: clamp(2rem, 4vw, 3rem);
+  margin-top: clamp(2.5rem, 4.5vw, 3.5rem);
   text-align: center;
-  font-size: 0.85rem;
-  color: rgba(26, 21, 16, 0.5);
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: rgba(26, 21, 16, 0.55);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 @media (max-width: 520px) {
